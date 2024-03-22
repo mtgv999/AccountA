@@ -19,7 +19,7 @@ public class Account { @Id
     private AccountStatus accountStatus;
     private Long balance;//[3]
     private LocalDateTime registeredAt;
-    private LocalDateTime unregisteredAt;
+    private LocalDateTime unRegisteredAt;
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate

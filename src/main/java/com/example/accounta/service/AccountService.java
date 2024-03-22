@@ -39,12 +39,12 @@ public class AccountService {
     @Transactional
     public AccountDto deleteAccount(Long userId, String accountNumber){
         AccountUser accountUser=accountUserRepository.findById(userId)
-                .orElseThrow(()->new RuntimeException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(()->new AccountException(ErrorCode.USER_NOT_FOUND));
         Account account=accountRepository.findByAccountNumber(accountNumber)
-                .orElseThrow(()->new RuntimeException(ErrorCode.USER_NOT_FOUND));
+                .orElseThrow(()->new AccountException(ErrorCode.USER_NOT_FOUND));
         //validateDeleteAccount(accountUser,account);
         account.setAccountStatus(AccountStatus.UNREGISTERED);
-        account.setUnregisteredAt(LocalDateTime.now());
+        account.setUnRegisteredAt(LocalDateTime.now());
         return AccountDto.fromEntity(account);}
     //private void validateDeleteAccount(AccountUser accountUser, Account account){
         //if(!Objects.equals(accountUser.getId(),account.getAccountUser().getId())){
