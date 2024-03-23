@@ -22,4 +22,11 @@ public class UseBalance {
         private TransactionResultType transactionResult;
         private String transactionId;
         private Long amount;
-        private LocalDateTime registeredAt;}}
+        private LocalDateTime transactedAt;
+        public static Response from(TransactionDto transactionDto){
+            return Response.builder()
+            .accountNumber(transactionDto.getAccountNumber())
+                .transactionResult(transactionDto.getTransactionResultType())
+                .transactionId(transactionDto.getTransactionId())
+                .amount(transactionDto.getAmount())
+                .transactedAt(transactionDto.getTransactedAt()).build();}}}
