@@ -1,11 +1,12 @@
 package com.example.accounta.domain;
+import com.example.accounta.exception.AccountException;
 import com.example.accounta.type.AccountStatus;
+import com.example.accounta.type.ErrorCode;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import java.time.LocalDateTime;
 @Builder @Entity @NoArgsConstructor
 @Getter @Setter @AllArgsConstructor
@@ -23,4 +24,9 @@ public class Account { @Id
     @CreatedDate
     private LocalDateTime createdAt;
     @LastModifiedDate
-    private LocalDateTime updatedAt;}
+    private LocalDateTime updatedAt;
+    public void useBalance(Long amount){
+        if(amount>balance){
+            throw new AccountException(ErrorCode.AMOUNT_EXCEED_BALANCE);}
+        balance-=amount;}
+}
