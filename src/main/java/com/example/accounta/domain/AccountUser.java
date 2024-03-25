@@ -9,10 +9,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 @Entity @Builder @NoArgsConstructor
 @AllArgsConstructor @Setter @Getter
-@EntityListeners(AuditingEntityListener.class)
-public class AccountUser {@Id
-    @GeneratedValue
-    private Long id;
+public class AccountUser extends BaseEntity{private String name;
     @Enumerated(EnumType.STRING)
     private TransactionType transactionType;
     private TransactionResultType transactionResultType;
@@ -21,8 +18,4 @@ public class AccountUser {@Id
     private Long amount;
     private Long balanceSnapshot;
     private String transactionId;
-    private LocalDateTime transactedAt;
-    @CreatedDate
-    private LocalDateTime createdAt;
-    @LastModifiedDate
-    private LocalDateTime updatedAt;}
+    private LocalDateTime transactedAt;}

@@ -1,4 +1,5 @@
 package com.example.accounta.dto;
+import com.example.accounta.aop.AccountLockIdInterface;
 import com.example.accounta.type.TransactionResultType;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -6,10 +7,10 @@ import java.time.LocalDateTime;
 public class UseBalance {
     @Setter @Getter
     @AllArgsConstructor
-    public static class Request{
+    public static class Request implements AccountLockIdInterface {
         @NotNull @Min(1)
         private Long userId;
-        @NotBlank @Size(min=10,max=10)
+        @NotBlank @Size(min=10,max=100)
         private String accountNumber;
         @NotNull @Min(1)
         @Max(2_000_000_000)

@@ -11,8 +11,8 @@ import java.time.LocalDateTime;
 @Builder @Entity @NoArgsConstructor
 @Getter @Setter @AllArgsConstructor
 @EntityListeners(AuditingEntityListener.class)
-public class Account { @Id
-    @GeneratedValue private Long id;
+public class Account extends BaseEntity{
+    @Id @GeneratedValue private Long id;
     @ManyToOne
     private AccountUser accountUser;
     private String accountNumber;//[2]
@@ -30,5 +30,5 @@ public class Account { @Id
     (ErrorCode.AMOUNT_EXCEED_BALANCE);}balance-=amount;}
     public void cancelBalance(Long amount){
         if(amount<0){throw new AccountException
-    (ErrorCode.INVALID_REQUEST);}balance-=amount;}
+    (ErrorCode.INVALID_REQUEST);}balance+=amount;}
 }
